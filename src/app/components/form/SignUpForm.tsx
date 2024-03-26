@@ -13,7 +13,7 @@ const SignUpForm = () => {
   const router = useRouter (); 
 
   // // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+//   console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++")
   const [ establishUser, setEstablishedUser ] = useState ()
 
   const getAllClients = async () => {
@@ -39,13 +39,13 @@ const SignUpForm = () => {
     }
   }
 
-  console.log("999999", establishUser)
+//   console.log("999999", establishUser)
 
   useEffect (() => {
       getAllClients ()
   }, [])
 
-  console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+//   console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++")
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -127,7 +127,10 @@ const SignUpForm = () => {
 
   const onSubmit: SubmitHandler<ClientRegistrationFormValues> = async (data) => {
     console.log(data, "////////");
-    return
+    // toast.success("User Registred Succesfully"); 
+    // reset ()
+    // return
+    setIsLoading (true)
     try {
       const result = await fetch("/api/users/signup", {
           method: "POST", 
@@ -137,16 +140,14 @@ const SignUpForm = () => {
           body: JSON.stringify(data)
       }); 
 
-      console.log("..........", result)
-
       if (result.ok) {
-          // console.log("it has passed the fetch")
-          alert("Merci pour votre souscripition")
           setIsLoading(false);
           toast.success("User Registred Succesfully"); 
           router.refresh(); 
           router.push("/"); 
+          setIsLoading (false)
       } else {
+        setIsLoading (false)
         toast.error("User Could not be registered"); 
         throw new Error("Problem pour enregistrer un user. ")
       }
@@ -154,9 +155,10 @@ const SignUpForm = () => {
       toast.error("User Could not be registered"); 
       console.log(error)
     }
+    reset ();
   }
   return (
-    <form className='flex flex-col gap-3' onSubmit={handleSubmit(onSubmit)}>
+    <form className='flex flex-col pt-[20rem] p-[1rem] sm:pt-[2rem] justify-center gap-3 overflow-x-hidden overflow-y-auto h-[600px] w-[100%] sm:h-auto' onSubmit={handleSubmit(onSubmit)}>
 
       {/* +++++++++ FIRSTNAME LASTNAME +++++++++++ */}
 
@@ -219,7 +221,6 @@ const SignUpForm = () => {
               <p className='text-[.9rem]' style={{
                   color: "red"
               }}>
-                  
                   { errors?.phoneNumber ? "Contact est obligatoire. Numero doit etre au moins 9 chiffres." : "" }
               </p>
           </div>

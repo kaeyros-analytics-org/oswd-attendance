@@ -9,53 +9,53 @@ import partn_SCHLogo from "../../../public/images/partn_SCH.png"
 
 const Parteners = () => {
   return (
-    <div>
-        <div className=" h-[100px]  w-full flex">
+    <div className='flex justify-center sm:w-[80%] lg:w-[40%] p-1 border border-white rounded-3xl my-[1rem] sm:my-[2rem]' >
+        <div className=" h-[50px]  w-full  flex">
             <Image
                 // onClick={() => {
                 //     router.push("https://kaeyros-analytics.com")
                 // }}
-                className="cursor-pointer w-[100px] m-auto"
+                className="cursor-pointer h-[50px] w-[60px] m-auto"
                 src={ kaeyros_logoLogo }
                 alt="Kaeyros-analytics logo"
             />
         </div>
-        <div className=" h-[100px]  w-full flex">
+        <div className=" h-[50px]  w-full flex">
             <Image
                 // onClick={() => {
                 //     router.push("https://kaeyros-analytics.com")
                 // }}
-                className="cursor-pointer w-[100px] m-auto"
+                className="cursor-pointer h-[50px] w-[60px] m-auto"
                 src={ Blason_univ_Yaoundé_1Logo }
                 alt="Kaeyros-analytics logo"
             />
         </div>
-        <div className=" h-[100px]  w-full flex">
+        <div className=" h-[50px]  w-full flex">
             <Image
                 // onClick={() => {
                 //     router.push("https://kaeyros-analytics.com")
                 // }}
-                className="cursor-pointer w-[100px] m-auto"
+                className="cursor-pointer h-[50px] w-[60px] m-auto"
                 src={ ifyarLogo }
                 alt="Kaeyros-analytics logo"
             />
         </div>
-        <div className=" h-[100px]  w-full flex">
+        <div className=" h-[50px]  w-full flex">
             <Image
                 // onClick={() => {
                 //     router.push("https://kaeyros-analytics.com")
                 // }}
-                className="cursor-pointer w-[100px] m-auto"
+                className="cursor-pointer h-[50px] w-[60px] m-auto"
                 src={ oswd_logoLogo }
                 alt="Kaeyros-analytics logo"
             />
         </div>
-        <div className=" h-[100px]  w-full flex">
+        <div className=" h-[50px]  w-full flex">
             <Image
                 // onClick={() => {
                 //     router.push("https://kaeyros-analytics.com")
                 // }}
-                className="cursor-pointer w-[100px] m-auto"
+                className="cursor-pointer h-[50px] w-[60px] m-auto"
                 src={ partn_SCHLogo }
                 alt="Kaeyros-analytics logo"
             />
