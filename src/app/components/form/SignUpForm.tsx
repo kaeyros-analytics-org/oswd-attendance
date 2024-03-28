@@ -9,6 +9,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Calendar } from '@/components/ui/calendar';
 import { DatePickerDemo } from '@/components/ui/DatePicker';
 
+
 const SignUpForm = () => {
 
   const [isLoading, setIsLoading] = useState<boolean>(false); 
@@ -20,29 +21,24 @@ const SignUpForm = () => {
   const [ establishUser, setEstablishedUser ] = useState ()
 
   const getAllClients = async () => {
-    console.log("devdedevdevedededededed")
     try {
-        const users = await fetch(`/api/users/signup`, {
-            cache: "no-store", 
-            // next: { revalidate: 10 }, 
-        }); 
-  
-        // console.log("-----=-------====-----------====", users)
-  
+        const users = await fetch(`/api/ows_bootcamp_users`, {
+          cache: "no-store", 
+          // next: { revalidate: 10 }, 
+        });
+
         if (!users.ok) {
             throw new Error("Failed to fetch users"); 
         } else {
             const test = await users.json()
             setEstablishedUser (test)
-            // console.log("__________===", test)
-            // return await users.json(); 
         }
     } catch (error) {
         console.log("Error loading attendancesToday: ", error); 
     }
   }
 
-//   console.log("999999", establishUser)
+  console.log("999999", establishUser)
 
   useEffect (() => {
       getAllClients ()
@@ -148,20 +144,37 @@ const SignUpForm = () => {
         rLanguageLevel: selectedLevel?.name
     }
     try {
-      const result = await fetch("/api/users/signup", {
+      const result = await fetch(`/api/ows_bootcamp_users`, {
           method: "POST", 
           headers: {
               "Content-type": "application/json", 
           }, 
           body: JSON.stringify(data)
+          // body: data!
       }); 
 
       if (result.ok) {
           setIsLoading(false);
           toast.success("User Registred Succesfully"); 
           router.refresh(); 
+
           router.push("/"); 
           setIsLoading (false)
+          // try {
+          //   const users = await fetch(`/api/users/signup`, {
+          //       cache: "no-store", 
+          //       // next: { revalidate: 10 }, 
+          //   }); 
+      
+          //   if (!users.ok) {
+          //       throw new Error("Failed to fetch users"); 
+          //   } else {
+          //       const test = await users.json()
+          //       setEstablishedUser (test)
+          //   }
+          // } catch (error) {
+          //     console.log("Error loading attendancesToday: ", error); 
+          // }
       } else {
         setIsLoading (false)
         toast.error("User Could not be registered"); 
@@ -363,8 +376,10 @@ const SignUpForm = () => {
           </div>
         )
       }
+      R Language Level:
 
       <div className='w-[100%] flex flex-col gap-4'>
+
         <div className='sm:grid sm:grid-cols-[repeat(4,minmax(100px,_1fr))] flex flex-row gap-1 justify-start sm:gap-2  w-[60%]'>
             {/* grid grid-cols-[repeat(3,minmax(300px,_1fr))] */}
             {/* flex flex-row gap-3 justify-around  */}
@@ -390,7 +405,7 @@ const SignUpForm = () => {
             </div>
 
         </div>
-        R Language Level:
+        
         <div className='sm:grid sm:grid-cols-[repeat(4,minmax(100px,_1fr))] flex flex-row gap-1 justify-start sm:gap-2  w-[60%]'>
             {/* space-y-1 leading-none */}
             <div onClick={ () => handleHighSelection() } className={ "flex flex-row justify-center gap-2 bg-white py-[.5rem] px-[1rem] rounded-3xl cursor-pointer" }>

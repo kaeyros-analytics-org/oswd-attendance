@@ -2,7 +2,7 @@
 
 import mongoose, { Schema } from "mongoose"; 
 
-const userSchema = new Schema(
+const owsdUserSchema = new Schema(
     {
         name: {
             type: String, 
@@ -56,6 +56,6 @@ const userSchema = new Schema(
     }
 )
 
-const User = mongoose.models.User || mongoose.model("User", userSchema); 
+const OwsdUser = mongoose.models.OwsdUser || mongoose.model("OwsdUser", owsdUserSchema); 
 
-export default User; 
+export default OwsdUser; 

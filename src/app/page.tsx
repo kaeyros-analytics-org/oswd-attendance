@@ -10,21 +10,26 @@ import SignupModule from "./module/SignupModule";
 // export const preferredRegion = 'auto'
 // export const maxDuration = 5
 
-export default function Home() {
+async function getAllClients() {
+  try {
+    const users = await fetch(`${ process?.env?.API_URL }/api/ows_bootcamp_users`, {
+        cache: "no-store", 
+        // next: { revalidate: 10 }, 
+    }); 
+    return users.json()
+  } catch (error) {
+      console.log("Error loading attendancesToday: ", error); 
+  }
+  
+}
+
+export default async function Home () {
+  const allUsers = await getAllClients()
+  console.log(allUsers, ">>>>>>>>>>")
   return (
     <div>
       <SignupModule />
-      {/* hi
-      <Button 
-        name="name"
-        className="bg-backgroundOSWD"
-      >
-        save
-      </Button>
-      */}
-
     </div>
   );
 }
 
-// export const dynamic = 'auto'
